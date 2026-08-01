@@ -62,6 +62,11 @@ extension Rotation: Hashable where N == 2, Scalar: Hashable {
 
 #if !hasFeature(Embedded)
     extension Rotation: Codable where N == 2, Scalar: Codable, Scalar: BinaryFloatingPoint {
+        // swift-linter:disable:next single type per file
+        // REASON: `CodingKeys` must stay `private` to this conformance's own
+        // `init(from:)`/`encode(to:)` — extracting it to its own file would
+        // force widening its access to `internal`, trading a mechanical
+        // organization rule for a real encapsulation regression.
         private enum CodingKeys: String, CodingKey {
             case a, b, c, d
         }
@@ -111,7 +116,7 @@ extension Rotation where Scalar: ExpressibleByIntegerLiteral {
         var m = InlineArray<N, InlineArray<N, Scalar>>(
             repeating: InlineArray<N, Scalar>(repeating: 0)
         )
-        for i in 0..<N {
+        (0..<N).forEach { i in
             m[i][i] = 1
         }
         return Self(matrix: m)
@@ -191,7 +196,7 @@ extension Rotation where N == 2, Scalar: BinaryFloatingPoint & Numeric.Transcend
 
 // MARK: - 2D Rotation - Generic (from precomputed sin/cos)
 
-extension Rotation where N == 2, Scalar: AdditiveArithmetic & SignedNumeric {
+extension Rotation where N == 2, Scalar: SignedNumeric {
     /// Creates a 2D rotation from precomputed cosine and sine values.
     @inlinable
     public init(cos: Scalar, sin: Scalar) {

@@ -58,6 +58,11 @@ extension Shear: Hashable where N == 2, Scalar: Hashable {
 
 #if !hasFeature(Embedded)
     extension Shear: Codable where N == 2, Scalar: Codable {
+        // swift-linter:disable:next single type per file
+        // REASON: `CodingKeys` must stay `private` to this conformance's own
+        // `init(from:)`/`encode(to:)` — extracting it to its own file would
+        // force widening its access to `internal`, trading a mechanical
+        // organization rule for a real encapsulation regression.
         private enum CodingKeys: String, CodingKey {
             case x, y
         }

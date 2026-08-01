@@ -5,7 +5,7 @@ public import Affine_Geometry_Primitives
 
 // MARK: - AffineTransform from Rotation
 
-extension Affine.Continuous.Transform where Scalar: BinaryFloatingPoint & ExpressibleByIntegerLiteral {
+extension Affine.Continuous.Transform where Scalar: BinaryFloatingPoint {
     /// Creates an affine transform from a 2D rotation.
     @inlinable
     public init(_ rotation: Rotation<2, Scalar>) {

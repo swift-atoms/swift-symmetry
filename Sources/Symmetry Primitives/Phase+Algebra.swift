@@ -16,12 +16,18 @@ extension Phase {
             group: .init(
                 identity: .zero,
                 combining: { lhs, rhs in
+                    // swift-linter:disable:next raw value access
+                    // REASON: same-package implementation of Phase's own Z4 group
+                    // structure — this is the type's own algebraic boundary.
                     guard let result = Phase(rawValue: (lhs.rawValue + rhs.rawValue) % 4) else {
                         preconditionFailure("Phase rawValue mod 4 is always in 0...3")
                     }
                     return result
                 },
                 inverting: { phase in
+                    // swift-linter:disable:next raw value access
+                    // REASON: same-package implementation of Phase's own Z4 group
+                    // structure — this is the type's own algebraic boundary.
                     guard let result = Phase(rawValue: (4 - phase.rawValue) % 4) else {
                         preconditionFailure("Phase rawValue mod 4 is always in 0...3")
                     }

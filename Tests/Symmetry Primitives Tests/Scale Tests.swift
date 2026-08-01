@@ -7,6 +7,9 @@ import Testing
 
 @Suite
 struct `Scale Tests` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
 
     // MARK: - Identity
 

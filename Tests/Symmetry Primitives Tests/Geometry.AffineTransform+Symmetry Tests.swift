@@ -10,6 +10,9 @@ import Testing
 
 @Suite
 struct `Geometry.AffineTransform+Symmetry Tests` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
 
     // MARK: - Rotation initialization
 
