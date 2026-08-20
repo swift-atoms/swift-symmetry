@@ -2,7 +2,7 @@
 
 internal import Cardinal_Primitives
 public import Finite_Primitives
-public import Ordinal_Primitives
+import Ordinal_Primitives
 public import Pair_Primitives
 
 /// Discrete rotational phases: 0°, 90°, 180°, 270°.
