@@ -1,5 +1,3 @@
-// Shear Tests.swift
-
 import Linear_Primitives
 import Testing
 
@@ -11,16 +9,12 @@ struct `Shear Tests` {
     @Suite struct `Edge Case` {}
     @Suite struct Integration {}
 
-    // MARK: - Identity
-
     @Test
     func `Identity has all factors equal to 0`() {
         let identity = Shear<2, Double>.identity
         #expect(identity.x == 0)
         #expect(identity.y == 0)
     }
-
-    // MARK: - Initialization
 
     @Test
     func `Initialize 2D shear with x and y`() {
@@ -42,8 +36,6 @@ struct `Shear Tests` {
         #expect(shear.y == 0.4)
     }
 
-    // MARK: - Convenience factory methods
-
     @Test
     func `Horizontal shear only affects x`() {
         let shear = Shear<2, Double>.horizontal(0.5)
@@ -58,8 +50,6 @@ struct `Shear Tests` {
         #expect(shear.y == 0.3)
     }
 
-    // MARK: - Properties
-
     @Test
     func `X property gets and sets correctly`() {
         var shear = Shear<2, Double>(x: 0.5, y: 0.3)
@@ -67,7 +57,7 @@ struct `Shear Tests` {
 
         shear.x = 0.8
         #expect(shear.x == 0.8)
-        #expect(shear.y == 0.3)  // y unchanged
+        #expect(shear.y == 0.3)
     }
 
     @Test
@@ -77,10 +67,8 @@ struct `Shear Tests` {
 
         shear.y = 0.9
         #expect(shear.y == 0.9)
-        #expect(shear.x == 0.5)  // x unchanged
+        #expect(shear.x == 0.5)
     }
-
-    // MARK: - Equatable
 
     @Test
     func `Equal shears are equal`() {
@@ -106,17 +94,15 @@ struct `Shear Tests` {
         #expect(identity == zero)
     }
 
-    // MARK: - Linear conversion
-
     @Test
     func `Linear conversion produces correct matrix`() {
         let shear = Shear<2, Double>(x: 0.5, y: 0.3)
         let linear: Linear<Double, Void>.Matrix<2, 2> = shear.linear()
 
-        #expect(linear.a == 1)  // diagonal
-        #expect(linear.b == 0.5)  // x shear
-        #expect(linear.c == 0.3)  // y shear
-        #expect(linear.d == 1)  // diagonal
+        #expect(linear.a == 1)
+        #expect(linear.b == 0.5)
+        #expect(linear.c == 0.3)
+        #expect(linear.d == 1)
     }
 
     @Test
@@ -152,15 +138,12 @@ struct `Shear Tests` {
         #expect(linear.d == 1)
     }
 
-    // MARK: - Matrix structure validation
-
     @Test
     func `Shear matrix has correct structure`() {
         let shear = Shear<2, Double>(x: 0.5, y: 0.3)
 
-        // Off-diagonal elements
-        #expect(shear.factors[0][1] == 0.5)  // x shear
-        #expect(shear.factors[1][0] == 0.3)  // y shear
+        #expect(shear.factors[0][1] == 0.5)
+        #expect(shear.factors[1][0] == 0.3)
     }
 
     @Test

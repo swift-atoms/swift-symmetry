@@ -1,15 +1,7 @@
-// Rotation+Algebra.swift
-// SO(2) abelian group witness for 2D rotations.
-
 public import Algebra_Group_Primitives
 
-// MARK: - Abelian Group Witness
-
 extension Rotation where N == 2, Scalar: BinaryFloatingPoint & Sendable {
-    /// SO(2) abelian group witness.
-    ///
-    /// The group operation is 2x2 orthogonal matrix multiplication.
-    /// Commutativity holds because 2D rotations commute (angle addition).
+
     @inlinable
     public static var group: Algebra.Group<Self>.Abelian {
         .init(
@@ -51,15 +43,11 @@ extension Rotation where N == 2, Scalar: BinaryFloatingPoint & Sendable {
         )
     }
 
-    /// Composes two rotations by matrix multiplication.
-    ///
-    /// - Returns: Rotation applying `other` first, then `self`.
     @inlinable
     public func concatenating(_ other: Self) -> Self {
         Self.group.combining(self, other)
     }
 
-    /// Inverse rotation (matrix transpose for orthogonal matrices).
     @inlinable
     public var inverted: Self {
         Self.group.inverting(self)

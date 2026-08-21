@@ -1,5 +1,3 @@
-// Rotation Tests.swift
-
 import Affine_Primitives
 import Dimension_Primitives
 import Linear_Primitives
@@ -14,8 +12,6 @@ struct `Rotation Tests` {
     @Suite struct `Edge Case` {}
     @Suite struct Integration {}
 
-    // MARK: - Identity
-
     @Test
     func `Identity is correctly initialized`() {
         let identity = Rotation<2, Double>.identity
@@ -25,14 +21,11 @@ struct `Rotation Tests` {
         #expect(identity.matrix[1][0] == 0)
     }
 
-    // MARK: - Initialization
-
     @Test
     func `Initialize from angle`() {
         let rotation = Rotation<2, Double>(angle: .pi / 4)
         let angle = .pi / 4.0
 
-        // Check that matrix represents rotation by π/4
         #expect(abs(rotation.matrix[0][0] - Double.math.cos(angle)) < 1e-10)
         #expect(abs(rotation.matrix[1][1] - Double.math.cos(angle)) < 1e-10)
         #expect(abs(rotation.matrix[1][0] - Double.math.sin(angle)) < 1e-10)
@@ -43,11 +36,10 @@ struct `Rotation Tests` {
     func `Initialize from degrees`() {
         let rotation = Rotation<2, Double>(degrees: Degree(90))
 
-        // 90 degrees is π/2 radians
-        #expect(abs(rotation.matrix[0][0]) < 1e-10)  // Double.math.cos(π/2) ≈ 0
-        #expect(abs(rotation.matrix[1][1]) < 1e-10)  // Double.math.cos(π/2) ≈ 0
-        #expect(abs(rotation.matrix[1][0] - 1) < 1e-10)  // Double.math.sin(π/2) ≈ 1
-        #expect(abs(rotation.matrix[0][1] + 1) < 1e-10)  // -Double.math.sin(π/2) ≈ -1
+        #expect(abs(rotation.matrix[0][0]) < 1e-10)
+        #expect(abs(rotation.matrix[1][1]) < 1e-10)
+        #expect(abs(rotation.matrix[1][0] - 1) < 1e-10)
+        #expect(abs(rotation.matrix[0][1] + 1) < 1e-10)
     }
 
     @Test
@@ -58,8 +50,6 @@ struct `Rotation Tests` {
         #expect(rotation.matrix[1][0] == 0.8)
         #expect(rotation.matrix[0][1] == -0.8)
     }
-
-    // MARK: - Angle property
 
     @Test
     func `Angle property returns correct value`() {
@@ -76,15 +66,12 @@ struct `Rotation Tests` {
         #expect(bool == true)
     }
 
-    // MARK: - Static concatenate function
-
     @Test
     func `Static concatenate composes rotations`() {
-        let rotation1 = Rotation<2, Double>(angle: .pi / 4)  // 45°
-        let rotation2 = Rotation<2, Double>(angle: .pi / 4)  // 45°
+        let rotation1 = Rotation<2, Double>(angle: .pi / 4)
+        let rotation2 = Rotation<2, Double>(angle: .pi / 4)
         let result = rotation1.concatenating(rotation2)
 
-        // Should equal 90° rotation
         let bool = abs(result.angle - .pi / 2) < 1e-10
         #expect(bool == true)
     }
@@ -100,16 +87,13 @@ struct `Rotation Tests` {
 
     @Test
     func `Concatenating instance method works`() {
-        let rotation1 = Rotation<2, Double>(angle: .pi / 6)  // 30°
-        let rotation2 = Rotation<2, Double>(angle: .pi / 3)  // 60°
+        let rotation1 = Rotation<2, Double>(angle: .pi / 6)
+        let rotation2 = Rotation<2, Double>(angle: .pi / 3)
         let result = rotation1.concatenating(rotation2)
 
-        // Should equal 90° rotation (30° + 60°)
         let bool = abs(result.angle - .pi / 2) < 1e-10
         #expect(bool == true)
     }
-
-    // MARK: - Static inverted function
 
     @Test
     func `Static inverted returns inverse rotation`() {
@@ -144,14 +128,11 @@ struct `Rotation Tests` {
         let inverted = rotation.inverted
         let result = rotation.concatenating(inverted)
 
-        // Result should be identity
         #expect(abs(result.matrix[0][0] - 1) < 1e-10)
         #expect(abs(result.matrix[1][1] - 1) < 1e-10)
         #expect(abs(result.matrix[0][1]) < 1e-10)
         #expect(abs(result.matrix[1][0]) < 1e-10)
     }
-
-    // MARK: - Common rotations
 
     @Test
     func `Quarter turn is 90 degrees`() {
@@ -173,8 +154,6 @@ struct `Rotation Tests` {
         #expect(bool == true)
     }
 
-    // MARK: - Rotated by convenience methods
-
     @Test
     func `Rotated by angle works`() {
         let rotation = Rotation<2, Double>(angle: Radian<Double>.pi / 6)
@@ -193,8 +172,6 @@ struct `Rotation Tests` {
         #expect(bool == true)
     }
 
-    // MARK: - Equatable
-
     @Test
     func `Equal rotations are equal`() {
         let rotation1 = Rotation<2, Double>(angle: .pi / 4)
@@ -210,8 +187,6 @@ struct `Rotation Tests` {
 
         #expect(rotation1 != rotation2)
     }
-
-    // MARK: - Linear conversion
 
     @Test
     func `Linear conversion produces correct matrix`() {

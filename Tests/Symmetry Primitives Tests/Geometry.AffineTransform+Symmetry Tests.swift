@@ -1,5 +1,3 @@
-// Geometry.AffineTransform+Symmetry Tests.swift
-
 import Affine_Geometry_Primitives
 import Affine_Primitives
 import Dimension_Primitives
@@ -14,14 +12,11 @@ struct `Geometry.AffineTransform+Symmetry Tests` {
     @Suite struct `Edge Case` {}
     @Suite struct Integration {}
 
-    // MARK: - Rotation initialization
-
     @Test
     func `Initialize from rotation creates correct transform`() {
         let rotation = Rotation<2, Double>(angle: Radian<Double>.pi / 4)
         let transform = Affine.Continuous<Double, Void>.Transform(rotation)
 
-        // Check linear part matches rotation matrix
         let angle = Double.pi / 4
         let expectedCos = Double.math.cos(angle)
         let expectedSin = Double.math.sin(angle)
@@ -31,7 +26,6 @@ struct `Geometry.AffineTransform+Symmetry Tests` {
         #expect(abs(transform.linear.c - expectedSin) < 1e-10)
         #expect(abs(transform.linear.d - expectedCos) < 1e-10)
 
-        // Translation should be zero
         #expect(transform.translation == .zero)
     }
 
@@ -52,15 +46,12 @@ struct `Geometry.AffineTransform+Symmetry Tests` {
         let rotation = Rotation<2, Double>.quarterTurn
         let transform = Affine.Continuous<Double, Void>.Transform(rotation)
 
-        // 90 degrees: Double.math.cos(π/2) ≈ 0, Double.math.sin(π/2) ≈ 1
-        #expect(abs(transform.linear.a) < 1e-10)  // Double.math.cos(π/2)
-        #expect(abs(transform.linear.b + 1) < 1e-10)  // -Double.math.sin(π/2)
-        #expect(abs(transform.linear.c - 1) < 1e-10)  // Double.math.sin(π/2)
-        #expect(abs(transform.linear.d) < 1e-10)  // Double.math.cos(π/2)
+        #expect(abs(transform.linear.a) < 1e-10)
+        #expect(abs(transform.linear.b + 1) < 1e-10)
+        #expect(abs(transform.linear.c - 1) < 1e-10)
+        #expect(abs(transform.linear.d) < 1e-10)
         #expect(transform.translation == .zero)
     }
-
-    // MARK: - Scale initialization
 
     @Test
     func `Initialize from scale creates correct transform`() {
@@ -119,8 +110,6 @@ struct `Geometry.AffineTransform+Symmetry Tests` {
         #expect(transform.linear.c == 0)
         #expect(transform.linear.d == 0.5)
     }
-
-    // MARK: - Shear initialization
 
     @Test
     func `Initialize from shear creates correct transform`() {

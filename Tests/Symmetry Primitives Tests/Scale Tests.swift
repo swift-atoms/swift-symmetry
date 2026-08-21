@@ -1,5 +1,3 @@
-// Scale Tests.swift
-
 import Linear_Primitives
 import Testing
 
@@ -10,8 +8,6 @@ struct `Scale Tests` {
     @Suite struct Unit {}
     @Suite struct `Edge Case` {}
     @Suite struct Integration {}
-
-    // MARK: - Identity
 
     @Test
     func `Identity has all factors equal to 1`() {
@@ -27,8 +23,6 @@ struct `Scale Tests` {
         #expect(identity.y == 1)
         #expect(identity.z == 1)
     }
-
-    // MARK: - Initialization
 
     @Test
     func `Initialize 2D scale with x and y`() {
@@ -58,8 +52,6 @@ struct `Scale Tests` {
         #expect(scale.y == 2.5)
     }
 
-    // MARK: - Uniform scale
-
     @Test
     func `Uniform scale creates equal factors`() {
         let scale = Scale<2, Double>.uniform(3.0)
@@ -81,8 +73,6 @@ struct `Scale Tests` {
         #expect(scale.y == 0.5)
     }
 
-    // MARK: - Subscript access
-
     @Test
     func `Subscript get returns correct factor`() {
         let scale = Scale<2, Double>(x: 1.5, y: 2.5)
@@ -99,16 +89,14 @@ struct `Scale Tests` {
         #expect(scale.y == 4.0)
     }
 
-    // MARK: - Static concatenate function
-
     @Test
     func `Static concatenate multiplies factors component-wise`() {
         let scale1 = Scale<2, Double>(x: 2.0, y: 3.0)
         let scale2 = Scale<2, Double>(x: 4.0, y: 5.0)
         let result = Scale.concatenate(scale1, with: scale2)
 
-        #expect(result.x == 8.0)  // 2 * 4
-        #expect(result.y == 15.0)  // 3 * 5
+        #expect(result.x == 8.0)
+        #expect(result.y == 15.0)
     }
 
     @Test
@@ -127,19 +115,17 @@ struct `Scale Tests` {
         let scale2 = Scale<2, Double>(x: 1.5, y: 2.0)
         let result = scale1.concatenating(scale2)
 
-        #expect(result.x == 3.0)  // 2 * 1.5
-        #expect(result.y == 6.0)  // 3 * 2
+        #expect(result.x == 3.0)
+        #expect(result.y == 6.0)
     }
-
-    // MARK: - Static inverted function
 
     @Test
     func `Static inverted returns reciprocal factors`() {
         let scale = Scale<2, Double>(x: 2.0, y: 4.0)
         let inverted = Scale.inverted(scale)
 
-        #expect(inverted.x == 0.5)  // 1/2
-        #expect(inverted.y == 0.25)  // 1/4
+        #expect(inverted.x == 0.5)
+        #expect(inverted.y == 0.25)
     }
 
     @Test
@@ -156,8 +142,8 @@ struct `Scale Tests` {
         let scale = Scale<2, Double>(x: 5.0, y: 10.0)
         let inverted = scale.inverted
 
-        #expect(inverted.x == 0.2)  // 1/5
-        #expect(inverted.y == 0.1)  // 1/10
+        #expect(inverted.x == 0.2)
+        #expect(inverted.y == 0.1)
     }
 
     @Test
@@ -180,8 +166,6 @@ struct `Scale Tests` {
         #expect(abs(restored.y - original.y) < 1e-10)
     }
 
-    // MARK: - Equatable
-
     @Test
     func `Equal scales are equal`() {
         let scale1 = Scale<2, Double>(x: 2.0, y: 3.0)
@@ -197,8 +181,6 @@ struct `Scale Tests` {
 
         #expect(scale1 != scale2)
     }
-
-    // MARK: - Linear conversion
 
     @Test
     func `Linear conversion produces diagonal matrix`() {
@@ -221,8 +203,6 @@ struct `Scale Tests` {
         #expect(linear.c == 0)
         #expect(linear.d == 1)
     }
-
-    // MARK: - 1D literal initialization
 
     @Test
     func `1D scale from float literal`() {
