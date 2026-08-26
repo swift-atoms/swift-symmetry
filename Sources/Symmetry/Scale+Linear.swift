@@ -1,5 +1,5 @@
-public import Dimension_Primitives
-public import Linear_Primitives
+public import Dimension
+public import Linear
 
 extension Scale where N == 2, Scalar: ExpressibleByIntegerLiteral {
 

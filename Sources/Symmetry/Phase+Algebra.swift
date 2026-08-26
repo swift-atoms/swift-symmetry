@@ -1,4 +1,4 @@
-public import Algebra_Group_Primitives
+public import Algebra_Group
 
 extension Phase {
 

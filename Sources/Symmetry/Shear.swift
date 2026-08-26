@@ -1,4 +1,4 @@
-public import Linear_Primitives
+public import Linear
 
 public struct Shear<let N: Int, Scalar: FloatingPoint> {
 

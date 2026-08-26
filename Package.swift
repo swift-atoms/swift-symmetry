@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "swift-symmetry-primitives",
+    name: "swift-symmetry",
     platforms: [
         .macOS(.v27),
         .iOS(.v27),
@@ -13,91 +13,91 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Symmetry Primitives",
-            targets: ["Symmetry Primitives"]
+            name: "Symmetry",
+            targets: ["Symmetry"]
         ),
         .library(
-            name: "Symmetry Primitives Test Support",
-            targets: ["Symmetry Primitives Test Support"]
+            name: "Symmetry Test Support",
+            targets: ["Symmetry Test Support"]
         ),
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-primitives/swift-linear-primitives.git",
+            url: "https://github.com/swift-molecules/swift-linear.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-algebra-primitives.git",
+            url: "https://github.com/swift-molecules/swift-algebra.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-pair-primitives.git",
+            url: "https://github.com/swift-molecules/swift-pair.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-affine-primitives.git",
+            url: "https://github.com/swift-molecules/swift-affine.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-affine-geometry-primitives.git",
+            url: "https://github.com/swift-molecules/swift-affine-geometry.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-cardinal-primitives.git",
+            url: "https://github.com/swift-molecules/swift-cardinal.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-dimension-primitives.git",
+            url: "https://github.com/swift-molecules/swift-dimension.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-finite-primitives.git",
+            url: "https://github.com/swift-molecules/swift-finite.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-numeric-primitives.git",
+            url: "https://github.com/swift-molecules/swift-numeric.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-ordinal-primitives.git",
+            url: "https://github.com/swift-molecules/swift-ordinal.git",
             branch: "main"
         ),
     ],
     targets: [
         .target(
-            name: "Symmetry Primitives",
+            name: "Symmetry",
             dependencies: [
-                .product(name: "Linear Primitives", package: "swift-linear-primitives"),
-                .product(name: "Algebra Group Primitives", package: "swift-algebra-primitives"),
-                .product(name: "Pair Primitives", package: "swift-pair-primitives"),
-                .product(name: "Affine Primitives", package: "swift-affine-primitives"),
+                .product(name: "Linear", package: "swift-linear"),
+                .product(name: "Algebra Group", package: "swift-algebra"),
+                .product(name: "Pair", package: "swift-pair"),
+                .product(name: "Affine", package: "swift-affine"),
                 .product(
-                    name: "Affine Geometry Primitives",
-                    package: "swift-affine-geometry-primitives"
+                    name: "Affine Geometry",
+                    package: "swift-affine-geometry"
                 ),
-                .product(name: "Cardinal Primitives", package: "swift-cardinal-primitives"),
-                .product(name: "Dimension Primitives", package: "swift-dimension-primitives"),
-                .product(name: "Finite Primitives", package: "swift-finite-primitives"),
-                .product(name: "Real Primitives", package: "swift-numeric-primitives"),
-                .product(name: "Ordinal Primitives", package: "swift-ordinal-primitives"),
+                .product(name: "Cardinal", package: "swift-cardinal"),
+                .product(name: "Dimension", package: "swift-dimension"),
+                .product(name: "Finite", package: "swift-finite"),
+                .product(name: "Real", package: "swift-numeric"),
+                .product(name: "Ordinal", package: "swift-ordinal"),
             ]
         ),
         .target(
-            name: "Symmetry Primitives Test Support",
+            name: "Symmetry Test Support",
             dependencies: [
-                "Symmetry Primitives",
+                "Symmetry",
                 .product(
-                    name: "Cardinal Primitives Test Support",
-                    package: "swift-cardinal-primitives"
+                    name: "Cardinal Test Support",
+                    package: "swift-cardinal"
                 ),
             ],
             path: "Tests/Support"
         ),
         .testTarget(
-            name: "Symmetry Primitives Tests",
+            name: "Symmetry Tests",
             dependencies: [
-                "Symmetry Primitives",
-                "Symmetry Primitives Test Support",
+                "Symmetry",
+                "Symmetry Test Support",
             ]
         ),
     ],

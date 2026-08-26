@@ -1,6 +1,6 @@
-public import Dimension_Primitives
-public import Linear_Primitives
-internal import Real_Primitives
+public import Dimension
+public import Linear
+internal import Real
 
 public struct Rotation<let N: Int, Scalar> {
 

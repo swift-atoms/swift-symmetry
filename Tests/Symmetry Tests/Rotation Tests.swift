@@ -1,10 +1,10 @@
-import Affine_Primitives
-import Dimension_Primitives
-import Linear_Primitives
-import Real_Primitives
+import Affine
+import Dimension
+import Linear
+import Real
 import Testing
 
-@testable import Symmetry_Primitives
+@testable import Symmetry
 
 @Suite
 struct `Rotation Tests` {

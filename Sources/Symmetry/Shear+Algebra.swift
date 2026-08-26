@@ -1,4 +1,4 @@
-public import Algebra_Group_Primitives
+public import Algebra_Group
 
 extension Shear where N == 2, Scalar: Sendable {
 

@@ -1,7 +1,7 @@
-internal import Cardinal_Primitives
-public import Finite_Primitives
-import Ordinal_Primitives
-public import Pair_Primitives
+internal import Cardinal
+public import Finite
+import Ordinal
+public import Pair
 
 public enum Phase: Int, Sendable, Hashable, CaseIterable {
 

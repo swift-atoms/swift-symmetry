@@ -1,4 +1,4 @@
-public import Affine_Geometry_Primitives
+public import Affine_Geometry
 
 extension Affine.Continuous.Transform where Scalar: BinaryFloatingPoint {
 

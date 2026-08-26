@@ -1,7 +1,7 @@
-import Linear_Primitives
+import Linear
 import Testing
 
-@testable import Symmetry_Primitives
+@testable import Symmetry
 
 @Suite
 struct `Scale Tests` {

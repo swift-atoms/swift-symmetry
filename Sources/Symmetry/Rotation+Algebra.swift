@@ -1,4 +1,4 @@
-public import Algebra_Group_Primitives
+public import Algebra_Group
 
 extension Rotation where N == 2, Scalar: BinaryFloatingPoint & Sendable {
 

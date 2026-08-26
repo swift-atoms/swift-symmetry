@@ -1,10 +1,10 @@
-import Affine_Geometry_Primitives
-import Affine_Primitives
-import Dimension_Primitives
-import Real_Primitives
+import Affine_Geometry
+import Affine
+import Dimension
+import Real
 import Testing
 
-@testable import Symmetry_Primitives
+@testable import Symmetry
 
 @Suite
 struct `Geometry.AffineTransform+Symmetry Tests` {
