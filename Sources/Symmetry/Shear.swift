@@ -1,5 +1,3 @@
-public import Linear
-
 public struct Shear<let N: Int, Scalar: FloatingPoint> {
 
     public var factors: InlineArray<N, InlineArray<N, Scalar>>
@@ -28,28 +26,6 @@ extension Shear: Hashable where N == 2, Scalar: Hashable {
         hasher.combine(y)
     }
 }
-
-#if !hasFeature(Embedded)
-    extension Shear: Codable where N == 2, Scalar: Codable {
-
-        private enum CodingKeys: String, CodingKey {
-            case x, y
-        }
-
-        public init(from decoder: any Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            let x = try container.decode(Scalar.self, forKey: .x)
-            let y = try container.decode(Scalar.self, forKey: .y)
-            self.init(x: x, y: y)
-        }
-
-        public func encode(to encoder: any Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(x, forKey: .x)
-            try container.encode(y, forKey: .y)
-        }
-    }
-#endif
 
 extension Shear where Scalar: ExpressibleByIntegerLiteral {
 
@@ -81,25 +57,5 @@ extension Shear where N == 2 {
         matrix[0][1] = x
         matrix[1][0] = y
         self.init(matrix)
-    }
-
-    @inlinable
-    public static func horizontal(_ factor: Scale<1, Scalar>) -> Self
-    where Scalar: ExpressibleByIntegerLiteral {
-        Self(x: factor.value, y: 0)
-    }
-
-    @inlinable
-    public static func vertical(_ factor: Scale<1, Scalar>) -> Self
-    where Scalar: ExpressibleByIntegerLiteral {
-        Self(x: 0, y: factor.value)
-    }
-}
-
-extension Shear where N == 2, Scalar: ExpressibleByIntegerLiteral {
-
-    @inlinable
-    public func linear<Space>() -> Linear<Scalar, Space>.Matrix<2, 2> {
-        .init(a: 1, b: x, c: y, d: 1)
     }
 }
