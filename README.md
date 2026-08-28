@@ -1,8 +1,8 @@
-# Symmetry Primitives
+# Symmetry
 
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 
-Symmetry primitives for Swift — dimensionless geometric transformations (shear and discrete 90° rotational phases) generic over scalar type. Foundation-free and Embedded-compatible.
+Dependency-free symmetry concepts for Swift: rotations, shears, and discrete 90° phases. Linear, algebra, dimension, finite, pair, and affine-geometry behavior lives in focused `swift-symmetry-*` molecule packages.
 
 ## Installation
 
@@ -10,7 +10,7 @@ Add the dependency to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-primitives/swift-symmetry-primitives.git", branch: "main")
+    .package(url: "https://github.com/swift-atoms/swift-symmetry.git", branch: "main")
 ]
 ```
 
@@ -20,7 +20,7 @@ Add the product to your target:
 .target(
     name: "App",
     dependencies: [
-        .product(name: "Symmetry Primitives", package: "swift-symmetry-primitives")
+        .product(name: "Symmetry", package: "swift-symmetry")
     ]
 )
 ```

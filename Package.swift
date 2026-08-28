@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "swift-symmetry-primitives",
+    name: "swift-symmetry",
     platforms: [
         .macOS(.v27),
         .iOS(.v27),
@@ -13,91 +13,30 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Symmetry Primitives",
-            targets: ["Symmetry Primitives"]
+            name: "Symmetry",
+            targets: ["Symmetry"]
         ),
         .library(
-            name: "Symmetry Primitives Test Support",
-            targets: ["Symmetry Primitives Test Support"]
+            name: "Symmetry Test Support",
+            targets: ["Symmetry Test Support"]
         ),
     ],
-    dependencies: [
-        .package(
-            url: "https://github.com/swift-primitives/swift-linear-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-algebra-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-pair-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-affine-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-affine-geometry-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-cardinal-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-dimension-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-finite-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-numeric-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-ordinal-primitives.git",
-            branch: "main"
-        ),
-    ],
+    dependencies: [],
     targets: [
         .target(
-            name: "Symmetry Primitives",
-            dependencies: [
-                .product(name: "Linear Primitives", package: "swift-linear-primitives"),
-                .product(name: "Algebra Group Primitives", package: "swift-algebra-primitives"),
-                .product(name: "Pair Primitives", package: "swift-pair-primitives"),
-                .product(name: "Affine Primitives", package: "swift-affine-primitives"),
-                .product(
-                    name: "Affine Geometry Primitives",
-                    package: "swift-affine-geometry-primitives"
-                ),
-                .product(name: "Cardinal Primitives", package: "swift-cardinal-primitives"),
-                .product(name: "Dimension Primitives", package: "swift-dimension-primitives"),
-                .product(name: "Finite Primitives", package: "swift-finite-primitives"),
-                .product(name: "Real Primitives", package: "swift-numeric-primitives"),
-                .product(name: "Ordinal Primitives", package: "swift-ordinal-primitives"),
-            ]
+            name: "Symmetry",
+            dependencies: []
         ),
         .target(
-            name: "Symmetry Primitives Test Support",
-            dependencies: [
-                "Symmetry Primitives",
-                .product(
-                    name: "Cardinal Primitives Test Support",
-                    package: "swift-cardinal-primitives"
-                ),
-            ],
+            name: "Symmetry Test Support",
+            dependencies: [.target(name: "Symmetry")],
             path: "Tests/Support"
         ),
         .testTarget(
-            name: "Symmetry Primitives Tests",
+            name: "Symmetry Tests",
             dependencies: [
-                "Symmetry Primitives",
-                "Symmetry Primitives Test Support",
+                .target(name: "Symmetry"),
+                .target(name: "Symmetry Test Support"),
             ]
         ),
     ],

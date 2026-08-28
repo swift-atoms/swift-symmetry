@@ -1,6 +1,6 @@
 import Testing
 
-@testable import Symmetry_Primitives
+@testable import Symmetry
 
 @Suite
 struct `Symmetry Tests` {

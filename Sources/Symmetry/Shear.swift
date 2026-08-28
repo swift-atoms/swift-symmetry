@@ -1,5 +1,3 @@
-public import Linear_Primitives
-
 public struct Shear<let N: Int, Scalar: FloatingPoint> {
 
     public var factors: InlineArray<N, InlineArray<N, Scalar>>
@@ -83,23 +81,4 @@ extension Shear where N == 2 {
         self.init(matrix)
     }
 
-    @inlinable
-    public static func horizontal(_ factor: Scale<1, Scalar>) -> Self
-    where Scalar: ExpressibleByIntegerLiteral {
-        Self(x: factor.value, y: 0)
-    }
-
-    @inlinable
-    public static func vertical(_ factor: Scale<1, Scalar>) -> Self
-    where Scalar: ExpressibleByIntegerLiteral {
-        Self(x: 0, y: factor.value)
-    }
-}
-
-extension Shear where N == 2, Scalar: ExpressibleByIntegerLiteral {
-
-    @inlinable
-    public func linear<Space>() -> Linear<Scalar, Space>.Matrix<2, 2> {
-        .init(a: 1, b: x, c: y, d: 1)
-    }
 }
