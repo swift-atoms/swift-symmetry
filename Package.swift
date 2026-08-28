@@ -21,83 +21,22 @@ let package = Package(
             targets: ["Symmetry Test Support"]
         ),
     ],
-    dependencies: [
-        .package(
-            url: "https://github.com/swift-molecules/swift-linear.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-algebra.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-pair.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-affine.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-affine-geometry.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-cardinal.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-dimension.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-finite.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-numeric.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-ordinal.git",
-            branch: "main"
-        ),
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "Symmetry",
-            dependencies: [
-                .product(name: "Linear", package: "swift-linear"),
-                .product(name: "Algebra Group", package: "swift-algebra"),
-                .product(name: "Pair", package: "swift-pair"),
-                .product(name: "Affine", package: "swift-affine"),
-                .product(
-                    name: "Affine Geometry",
-                    package: "swift-affine-geometry"
-                ),
-                .product(name: "Cardinal", package: "swift-cardinal"),
-                .product(name: "Dimension", package: "swift-dimension"),
-                .product(name: "Finite", package: "swift-finite"),
-                .product(name: "Real", package: "swift-numeric"),
-                .product(name: "Ordinal", package: "swift-ordinal"),
-            ]
+            dependencies: []
         ),
         .target(
             name: "Symmetry Test Support",
-            dependencies: [
-                "Symmetry",
-                .product(
-                    name: "Cardinal Test Support",
-                    package: "swift-cardinal"
-                ),
-            ],
+            dependencies: [.target(name: "Symmetry")],
             path: "Tests/Support"
         ),
         .testTarget(
             name: "Symmetry Tests",
             dependencies: [
-                "Symmetry",
-                "Symmetry Test Support",
+                .target(name: "Symmetry"),
+                .target(name: "Symmetry Test Support"),
             ]
         ),
     ],
