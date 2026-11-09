@@ -36,10 +36,9 @@ extension `Symmetry Tests`.`Edge Case` {
         let decoded = try JSONDecoder().decode(Shear<2, Double>.self, from: data)
 
         #expect(decoded == shear)
-        for row in 0..<2 {
-            for column in 0..<2 {
-                #expect(decoded.factors[row][column] == shear.factors[row][column])
-            }
-        }
+        #expect(decoded.factors[0][0] == shear.factors[0][0])
+        #expect(decoded.factors[0][1] == shear.factors[0][1])
+        #expect(decoded.factors[1][0] == shear.factors[1][0])
+        #expect(decoded.factors[1][1] == shear.factors[1][1])
     }
 }

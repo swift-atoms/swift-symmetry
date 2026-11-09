@@ -5,14 +5,11 @@ public struct Shear<let N: Int, Scalar: FloatingPoint> {
     @usableFromInline
     internal var storage: InlineArray<N, InlineArray<N, Scalar>>
 
-    @inlinable
-    public var factors: InlineArray<N, InlineArray<N, Scalar>> { storage }
-
     /// Creates a shear from its factors, setting the diagonal to zero.
     @inlinable
     public init(_ factors: consuming InlineArray<N, InlineArray<N, Scalar>>) {
         var factors = factors
-        for i in 0..<N {
+        (0..<N).forEach { i in
             factors[i][i] = .zero
         }
         self.storage = factors
@@ -20,6 +17,12 @@ public struct Shear<let N: Int, Scalar: FloatingPoint> {
 }
 
 extension Shear: Sendable where Scalar: Sendable {}
+
+extension Shear {
+
+    @inlinable
+    public var factors: InlineArray<N, InlineArray<N, Scalar>> { storage }
+}
 
 extension Shear: Equatable where N == 2 {
 
