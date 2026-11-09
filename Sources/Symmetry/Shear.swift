@@ -1,10 +1,21 @@
 public struct Shear<let N: Int, Scalar: FloatingPoint> {
 
-    public var factors: InlineArray<N, InlineArray<N, Scalar>>
+    /// The amounts of shear. The diagonal is always zero: a shear has no
+    /// amount along an axis onto itself, so it is not part of the value.
+    @usableFromInline
+    internal var storage: InlineArray<N, InlineArray<N, Scalar>>
 
     @inlinable
+    public var factors: InlineArray<N, InlineArray<N, Scalar>> { storage }
+
+    /// Creates a shear from its factors, setting the diagonal to zero.
+    @inlinable
     public init(_ factors: consuming InlineArray<N, InlineArray<N, Scalar>>) {
-        self.factors = factors
+        var factors = factors
+        for i in 0..<N {
+            factors[i][i] = .zero
+        }
+        self.storage = factors
     }
 }
 
@@ -61,14 +72,14 @@ extension Shear where N == 2 {
 
     @inlinable
     public var x: Scalar {
-        get { factors[0][1] }
-        set { factors[0][1] = newValue }
+        get { storage[0][1] }
+        set { storage[0][1] = newValue }
     }
 
     @inlinable
     public var y: Scalar {
-        get { factors[1][0] }
-        set { factors[1][0] = newValue }
+        get { storage[1][0] }
+        set { storage[1][0] = newValue }
     }
 
     @inlinable
